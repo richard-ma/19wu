@@ -3,8 +3,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'slim-rails'
-gem 'pg', :platform => [:ruby, :mswin, :mingw]
-gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
+
+group :pg do
+  gem 'pg', :platform => [:ruby, :mswin, :mingw]
+  gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
+end
+
+group :sqlite3 do
+  gem 'sqlite3'
+end
 
 gem 'devise'
 gem 'settingslogic'
@@ -20,6 +27,11 @@ group :development, :test do
   gem 'thin', '~> 1.5.0'
   gem 'pry-rails'
   gem 'guard-livereload'
+
+  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
+    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
+    gem 'therubyracer', :platforms => :ruby
+  end
 end
 
 group :test do
@@ -32,11 +44,6 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
   gem 'uglifier',       '>= 1.0.3'
   gem 'jquery-rails'
-
-  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
-    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
-    gem 'therubyracer', :platforms => :ruby
-  end
 end
 
 
