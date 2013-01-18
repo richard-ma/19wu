@@ -36,6 +36,7 @@ gem 'settingslogic'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
 gem 'friendly_id'
+gem 'redcarpet' # markdown parser
 
 group :development do
   gem 'mails_viewer'
