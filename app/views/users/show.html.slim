@@ -5,7 +5,13 @@
 
   .user-body
     dl
+      dt= Profile.human_attribute_name(:name)
+      dd= @user.profile.name
+      dt= Profile.human_attribute_name(:website)
+      dd= @user.profile.website
       dt= User.human_attribute_name(:created_at)
       dd= l @user.created_at.to_date
-
-
+      dt= Profile.human_attribute_name(:phone)
+      dd= @user.profile.phone
+      dt= Profile.human_attribute_name(:bio)
+      dd= @user.profile.bio
